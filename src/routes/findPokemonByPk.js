@@ -3,9 +3,9 @@ const { Pokemon } = require("../db/sequelize");
 module.exports = (app) => {
   app.get("/api/pokemons/:id", (req, res) => {
     Pokemon.findByPk(req.params.id) //On cherhce le pokémon correspondant à l'id renseigner
-      .then((pokemon) => {
+      .then((data) => {
         const message = "Un pokémon a bien été trouvé.";
-        res.json({ message, data: pokemon });
+        res.json({ message, data });
       });
   });
 };

@@ -1,35 +1,37 @@
-const { Sequelize, DataTypes } = require("sequelize"); //Sequélise est une forme de router pour se connnecté à la base de donnée. DataTypes sont les types ncéssaire pour définir le model
+/* ETAPE 1: On importe Sequelize*/
+const { Sequelize, DataTypes } = require("sequelize"); //Sequélise est un ORM (Object Relationnal Mapping) pour se connnecté à la base de donnée. Il est la boîte noir qui prend en entré des requettes écrit en JS et les traduits en langage SQL. Il faudra aussi installer le driver Mariadb pour se connecter au serveur.
+// DataTypes sont les types nécéssaire pour définir le model
 
 const PokemonModel = require("../models/pokemon"); //Importation du model de pokemon
 
 const pokemons = require("./mock-pokemon"); //On importe la data de chaque pokemons
 
-/*****On crée une instance de Sequelize pour se connecter a la base de donnée***/
+/* ETAPE 2: On crée une instance de Sequelize pour se connecter a la base de donnée et avoir accès à ses méthodes***/
 const sequelize = new Sequelize(
-  "pokedex", //Nom de la base de donnée
-  "root", //identifiant permetant d'accéder à la base de donnée : par défaut c'est root
-  "", //mots de passe de la base de donnée : par défaut c'est une chaîne vide
+  "pokedex", // <- Nom de la base de donnée
+  "root", // <- identifiant permetant d'accéder à la base de donnée : par défaut c'est root
+  "", // <- mots de passe de la base de donnée : par défaut c'est une chaîne vide
   {
-    host: "localhost",
-    dialect: "mariadb",
+    host: "localhost", // <- indique ou se trouve la base de donnée sur notre machine
+    dialect: "mariadb", // <- nom du driver utiliser pour permetre a sequelize de se connecter à la base de       donnée.
     dialectOption: {
-      timezone: "Etc/GMT-2",
+      timezone: "Etc/GMT-2", // <- Ces deux derniers sont optionnels et permettent d'éviter d'afficher des messages d'avertissements dans la console plus tard.
     },
     logging: false,
   }
 );
 
-/*On teste si la connection à réussit ou non avec la méthode authenticate */
+/* ETAPE 3: On teste si la connection à réussit ou non avec la méthode authenticate*/
 sequelize
   .authenticate()
   .then(() =>
     console.log("La connexion à la base de donnée à bien été établie.")
   )
   .catch((error) =>
-    console.error(`Impossible de se connecter à la base de données ${error}`)
+    console.error(`Impossible de se connecter à la base de données : ${error}`)
   );
 
-const Pokemon = PokemonModel(sequelize, DataTypes); //On instancie notre model pour crée la table
+const Pokemon = PokemonModel(sequelize, DataTypes); //On instancie notre model pour crée sa table associé.ceci dans le but de remplir cette table par des instances de pokemons grâce à la méthode Create()
 
 //On initialise la base de donnée
 const initDb = () => {

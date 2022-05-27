@@ -6,6 +6,7 @@ exports.success = (message, data) => {
   };
 };
 
+//Méthode permettant de généré un id unique
 exports.getUniqueId = (data) => {
   const pokemonsIds = data.map(({ id }) => id);
   const idMax = pokemonsIds.reduce((a, b) => Math.max(a, b));
@@ -76,3 +77,5 @@ app.delete("/api/pokemons/:id", async (req, res) => {
   });*/
 
 //PATCH : contrairement à PUT où on doit modifié toute une ressource, PATCH nous permet de modifié un élément particulier de cette ressource. Néanmoins, il n'est pas conseiller de l'utilisé pour les API Rest car si deux personnes essaient de modifié le même élément en même temps, il y'aura un gros risque de conflit ce qui fera cracher notre application.
+
+//BACKEND : Serveur (Node JS) + API Rest(Express) + BDD(SQL)

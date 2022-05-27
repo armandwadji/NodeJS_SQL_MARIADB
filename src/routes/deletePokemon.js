@@ -12,3 +12,5 @@ module.exports = (app) => {
     });
   });
 };
+
+//ON utilise la méthode destroy() pour supprimer un pokemon

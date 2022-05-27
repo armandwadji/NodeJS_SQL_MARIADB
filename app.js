@@ -2,12 +2,12 @@ const express = require("express"); //on récupère le paquet express dans notre
 const morgan = require("morgan"); //Sert à afficher les info de la requete
 const favicon = require("serve-favicon"); //sert à affiché l'icone sur le navigateur
 const bodyParser = require("body-parser"); //transforme une chaîne de caractère en format JSON.
-const sequelize = require("./src/db/sequelize"); //on importe sequelize pour lancer la méthode initDb
+const sequelize = require("./src/db/sequelize"); //on importe sequelize pour lancer la méthode initDb()
 
 const app = express(); //On créer une instance d'une application express.
 const port = 3000;
 
-//Création d'un middleware permettant de logger l'url appelé par l'utilisateur. et le favicon.
+//Création d'un middleware permettant de logger l'url appelé par l'utilisateur, le favicon et la convertion des donées en JSON.
 app
   .use(favicon(__dirname + "/favicon.ico")) //Pour insérer l'icone dans le navigateur
   .use(morgan("dev")) //Pour affiché le méssage dans le terminal lors de la requête
@@ -34,6 +34,8 @@ require("./src/routes/updatePokemon")(app);
 
 /****Méthode DELETE (Update) ****/
 require("./src/routes/deletePokemon")(app);
+
+/*********************************************************/
 
 //Méthode pour affiché un méssage dans le terminal du dévéloppeur
 app.listen(port, () =>

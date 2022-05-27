@@ -1,15 +1,16 @@
+/****CREATION DU MODEL : Pokemon******/
 module.exports = (sequelize, DataTypes) => {
   return sequelize.define(
     "Pokemon",
     {
       id: {
         type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
+        primaryKey: true, // <- permet d'indiquer l'unicité de l'id dans la BDD
+        autoIncrement: true, // <- permet d'indiqué que l'id doit s'incrémenté seul dans la BDD
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false, //Permet d'indiqué que les propriétié ne sont pas facultuatives
+        allowNull: false, //Permet d'indiqué que les propriétiés ne sont pas facultuatives
       },
       hp: {
         type: DataTypes.INTEGER,
