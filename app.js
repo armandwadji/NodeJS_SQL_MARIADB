@@ -3,6 +3,7 @@ const morgan = require("morgan"); //Sert à afficher les info de la requete
 const favicon = require("serve-favicon"); //sert à affiché l'icone sur le navigateur
 const bodyParser = require("body-parser"); //transforme une chaîne de caractère en format JSON.
 const sequelize = require("./src/db/sequelize"); //on importe sequelize pour lancer la méthode initDb()
+const res = require("express/lib/response");
 
 const app = express(); //On créer une instance d'une application express.
 const port = 3000;
@@ -36,6 +37,13 @@ require("./src/routes/updatePokemon")(app);
 require("./src/routes/deletePokemon")(app);
 
 /*********************************************************/
+
+/***On ajoute la gestion des erreurs 404***/
+app.use(({ res }) => {
+  const message =
+    "Impossible de trouver la ressource demandée ! Vous pouvez essayer une autre URL.";
+  res.status(404).json({ message });
+});
 
 //Méthode pour affiché un méssage dans le terminal du dévéloppeur
 app.listen(port, () =>

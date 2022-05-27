@@ -79,3 +79,24 @@ app.delete("/api/pokemons/:id", async (req, res) => {
 //PATCH : contrairement à PUT où on doit modifié toute une ressource, PATCH nous permet de modifié un élément particulier de cette ressource. Néanmoins, il n'est pas conseiller de l'utilisé pour les API Rest car si deux personnes essaient de modifié le même élément en même temps, il y'aura un gros risque de conflit ce qui fera cracher notre application.
 
 //BACKEND : Serveur (Node JS) + API Rest(Express) + BDD(SQL)
+
+/*********************************LES CODE DE STATUS ERREURS HTTP *******************/
+/*
+  - 1XX : L'information
+        Communique des informations au niveau du protocole de transfert. Aucune données n'est échanger entre le client et le serveur, on parle de MetaDonnées.
+
+  - 2XX : Le Succès(200, 201, ...)
+        Indique que la requête du client à été accepté et traité avec succès et tous s'est passé correctement.
+        Il y'a bien eu transfert de la donnée demandé.
+
+  -3XX : La Redirection(301, 302, ...)
+        Indique que le client souhaite accéder à une ressource qui à été déplacé.Il faudra éffectuer une deuxième reqête pour aller cherhcer les données au bon endroit.
+
+  -4XX : Erreur du client(401, 404, ...)
+        Indique que le client s'est planté dans la requête.
+        Exemple : 404 la ressource n'existe pas ou plus, 401 vous n'ête pas autorisé à accéder à cette ressource.
+
+  -5XX : Erruer du serveur(500, 503, ...)
+        La c'est de la faute du Devéloppeur.Il y'a un problème au niveau du serveur.
+
+*/
