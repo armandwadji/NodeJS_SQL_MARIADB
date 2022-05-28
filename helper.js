@@ -100,3 +100,19 @@ app.delete("/api/pokemons/:id", async (req, res) => {
         La c'est de la faute du Devéloppeur.Il y'a un problème au niveau du serveur.
 
 */
+
+/***** VALIDATEURS ET CONTRAINTES****/
+//Les règles de VALIDATIONS : Vérifie la conformité des données, bloque la requête en cas de non conformité et génère une Erreur.
+/*
+    - notEmpty <- Pour vérifié que la valeur n'est pas Empty
+    - notNull <- Pour vérifier que la valeur n'est pas Null
+    - isInt <- Pour vérifier que c'est bien un entier
+    - isUrl <- Pour vérifier que c'est bien un URL
+    - min {args: [valMin], msg: ""} <- Pour définir la valeur minimal d'un Integer
+    - max {args: [valMax], msg: ""} <- Pour définir la valeur maxima d'un Integer
+    - len {args:[minChar,maxChar], msg:""} <- Pour définir la longueur min et max d'une chaine de caractère.
+  */
+
+//Les CONTRAINTES :sont des règles définit au niveau SQL. Donc la requête bonne ou mauvaise est exécuté, puis c'est au niveau du serveur SQL que la demande est rejeter pour que enfin sequilize nous informe ce que s'est passé.
+
+//Validation: Evite une requête inutile -  CONTRAINTE: dernière vérification
