@@ -10,7 +10,7 @@ module.exports = (app) => {
           return res.status(404).json({ message }); //Le return ici est fait pour arrété la fonction en cas de condition valide
         }
         const message = "Un pokémon a bien été trouvé.";
-        res.json({ message, data });
+        res.json({ message, data }); //<- destructuration
       })
       .catch((error) => {
         const message =

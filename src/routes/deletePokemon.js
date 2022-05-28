@@ -12,6 +12,7 @@ module.exports = (app) => {
 
         const pokemonDeleted = pokemon; //On récupère le pokemon correspondant à la l'id dans le but de le retourné au client avant sa suppression définitive
 
+        //Le return au destroy nous permet de transmettre l'erreur éventuel au catch
         return Pokemon.destroy({ where: { id: pokemon.id } }) //On utilise la méthode destroy() pour supprimer l'élément
           .then((_) => {
             const message = `Le pokémon avec l'identifiant n°${pokemonDeleted.id} a bien été supprimé.`;
@@ -19,7 +20,6 @@ module.exports = (app) => {
           });
       })
       .catch((error) => {
-        //Le return au destroy nous permet de transmettre l'erreur éventuel au catch
         const message =
           "La pokémon n'a pas pu être supprimé. Réessayez dans quelques instants.";
         res.status(500).json({ message, data: error });

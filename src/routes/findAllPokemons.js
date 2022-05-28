@@ -30,14 +30,16 @@ module.exports = (app) => {
             [Op.like]: `%${name}%`, // 'name' est le critère de la recherche
           },
         },
-        order: [["name", "DESC"]], // <- Par dédaut c'est order : ["name"]
+        order: [["name", "ASC"]], // <- Par dédaut c'est order : ["name"]
         limit: limit, // <- permet de mettre en place une limite de nombre d'éléments fournis dans la réponse
       }).then(({ count, rows }) => {
+        //Equivalent à : pokemons => pokemons.count et pokemons.rows
+        //<- count nbr total de résultats - rows : nbr de résultats à afficher
         const message = `Il y a ${count} pokémons qui correspondent au terme de recherche ${name}`;
         res.json({ message, data: rows });
       });
     } else {
-      Pokemon.findAll({ order: [["name", "DESC"]] })
+      Pokemon.findAll({ order: [["name", "DESC"]] }) //<- Ordre des pokémons décroissants
         .then((pokemons) => {
           const message = "La liste des pokémons a bien été récupérée.";
           res.json({ message, data: pokemons });

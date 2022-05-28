@@ -26,6 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false, //Permet d'indiqué que les propriétiés ne sont pas facultuatives et pas de null
         //Contrainte d'unicité
         unique: {
+          //<- Unicité du nom dess pokémons
           msg: "Le nom est déja pris.",
         },
         validate: {
