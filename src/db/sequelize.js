@@ -3,8 +3,11 @@ const { Sequelize, DataTypes } = require("sequelize"); //Sequélise est un ORM (
 // DataTypes sont les types nécéssaire pour définir le model
 
 const PokemonModel = require("../models/pokemon"); //Importation du model de pokemon
+const UserModel = require("../models/user"); //Importation du model de user
 
 const pokemons = require("./mock-pokemon"); //On importe la data de chaque pokemons
+
+const bcrypt = require("bcrypt"); //On importe le module bcrypt qui est une fonction de hash
 
 /* ETAPE 2: On crée une instance de Sequelize pour se connecter a la base de donnée et avoir accès à ses méthodes***/
 const sequelize = new Sequelize(
@@ -31,31 +34,47 @@ sequelize
     console.error(`Impossible de se connecter à la base de données : ${error}`)
   );
 
-const Pokemon = PokemonModel(sequelize, DataTypes); //On instancie notre model pour crée sa table associé.ceci dans le but de remplir cette table par des instances de pokemons grâce à la méthode Create()
+const Pokemon = PokemonModel(sequelize, DataTypes); //On instancie notre model Pokemon pour crée sa table associé.ceci dans le but de remplir cette table par des instances de pokemons grâce à la méthode Create()
+
+const User = UserModel(sequelize, DataTypes); //On instancie notre model User pour crée sa table associé.ceci dans le but de remplir cette table par des instances de users grâce à la méthode Create()
 
 //On initialise la base de donnée
 const initDb = () => {
-  return sequelize
-    .sync({ force: true }) //Supprime la table associé à chaque model pour toujours repartir à neuf
-    .then(() => {
-      pokemons.map((pokemon) => {
-        const { name, hp, cp, picture, types } = pokemon;
-
-        //On crée un pokémon par boucle de mapping
-        Pokemon.create({
-          name,
-          hp,
-          cp,
-          picture,
-          types,
+  return (
+    sequelize
+      .sync({ force: true }) //Supprime la table associé à chaque model pour toujours repartir à neuf
+      //On crée un pokémon par boucle de mapping (12 au total)
+      .then(() => {
+        pokemons.map((pokemon) => {
+          const { name, hp, cp, picture, types } = pokemon;
+          Pokemon.create({
+            name,
+            hp,
+            cp,
+            picture,
+            types,
+          });
+          // .then( ( pokemon ) => console.log( pokemon.toJSON() ) );
         });
-        // .then( ( pokemon ) => console.log( pokemon.toJSON() ) );
-      });
-      console.log("La base de donnée a bien été initialisée !");
-    });
+
+        //On appel la méthode hash
+        bcrypt.hash("armand", 10).then((hash) => {
+          //<- 10 est le temps d'encryptage.plus il est long plus le MDP est crypté et prendra du temp pour être décrypté
+          //On crée un user
+          User.create({
+            username: "armand",
+            password: hash, //<- On pousse en BDD le hash du password
+          });
+          // .then( ( user ) => console.log( user.toJSON() ) );
+        });
+
+        console.log("La base de donnée a bien été initialisée !");
+      })
+  );
 };
 
 module.exports = {
   initDb,
   Pokemon,
+  User,
 };
