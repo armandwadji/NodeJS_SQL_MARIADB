@@ -80,6 +80,12 @@ app.delete("/api/pokemons/:id", async (req, res) => {
 
 //BACKEND : Serveur (Node JS) + API Rest(Express) + BDD(SQL)
 
+//Paramètre d'URL :
+//api/pokemons/:id <- req.params.id
+
+//Paramètre de REQUETE :
+//api/pokemons?name=Bulbizzare <- req.query.name
+
 /*********************************LES CODE DE STATUS ERREURS HTTP *******************/
 /*
   - 1XX : L'information
@@ -116,3 +122,20 @@ app.delete("/api/pokemons/:id", async (req, res) => {
 //Les CONTRAINTES :sont des règles définit au niveau SQL. Donc la requête bonne ou mauvaise est exécuté, puis c'est au niveau du serveur SQL que la demande est rejeter pour que enfin sequilize nous informe ce que s'est passé.
 
 //Validation: Evite une requête inutile -  CONTRAINTE: dernière vérification
+
+/******LES OPERATEURS SEQUELIZE******/
+/*
+    - Op.eq <- fait une recherche en dur dans la base de donnée
+    - Op.like <- Vérifie si le terme de recherche est contenue dans le nom du pokémon . Attention au %
+        * ${name}% : recherche une pokémon qui commence par le terme de recherche
+        * %${name} : recherche une pokémon qui se termine par le terme de recherche
+        * %${name}% : recherche une pokémon qui commence ou se termine (contient) par le terme de recherche
+        
+    -limit <- permet de limité le nombre d'éléments retourné par la requête
+    -findAndCountAll <- permet de retourné le nombre total d'éléments disponibles de la réponse à la requête ainsi qu'un nombre limité de résultats à retourné
+
+    -Order <- Permet de trier une recherche par ordre :
+        * Croissant: ['name', 'ASC']
+        * Décroissant: ['name', 'DESC']
+        * Par défault c'est croissant : ['name']
+ */
