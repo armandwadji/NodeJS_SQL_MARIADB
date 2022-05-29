@@ -36,6 +36,9 @@ require("./src/routes/updatePokemon")(app);
 /****Méthode DELETE (Update) ****/
 require("./src/routes/deletePokemon")(app);
 
+/****Méthode POST pour le Login ****/
+require("./src/routes/login")(app);
+
 /*********************************************************/
 
 /***On ajoute la gestion des erreurs 404 avec la méthode use()***/

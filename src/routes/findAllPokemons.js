@@ -1,8 +1,9 @@
 const { Pokemon } = require("../db/sequelize");
 const { Op } = require("sequelize"); //<- On importe les opérateurs de séquilize
+const auth = require("../auth/auth"); //On importe le middleware d'authentification
 
 module.exports = (app) => {
-  app.get("/api/pokemons", (req, res) => {
+  app.get("/api/pokemons", auth, (req, res) => {
     //On teste si on à le paramètre de recherche limit
     // let limit;
     // if (req.query.limit) {

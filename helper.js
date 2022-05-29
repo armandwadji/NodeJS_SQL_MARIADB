@@ -147,9 +147,21 @@ app.delete("/api/pokemons/:id", async (req, res) => {
         
     -limit <- permet de limité le nombre d'éléments retourné par la requête
     -findAndCountAll <- permet de retourné le nombre total d'éléments disponibles de la réponse à la requête ainsi qu'un nombre limité de résultats à retourné
+    -findOne <- permet d'aller cherché un élément grâce à un paramètre fournis dans la requête.
 
     -Order <- Permet de trier une recherche par ordre :
         * Croissant: ['name', 'ASC']
         * Décroissant: ['name', 'DESC']
         * Par défault c'est croissant : ['name']
+ */
+
+/*AUTHENTIFICATION : SECURITE DE L'API */
+//Il faudra une fonction de hashage
+//Il faudra un token(jetton) JWT(JSON WEB TOKEN) : c'est une clé cryptée, avec une durée de validité dans le temps, et qui se présente sous la forme d'une chaîne de caractères.
+
+/*
+  authorization : Bearer <JWT>
+  Exemple de syntaxe :
+  authorization : Bearer jdE98zDdefze82XZDZZD
+                                                                                                    
  */

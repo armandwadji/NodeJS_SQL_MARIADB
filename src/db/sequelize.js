@@ -40,37 +40,35 @@ const User = UserModel(sequelize, DataTypes); //On instancie notre model User po
 
 //On initialise la base de donnée
 const initDb = () => {
-  return (
-    sequelize
-      .sync({ force: true }) //Supprime la table associé à chaque model pour toujours repartir à neuf
+  return sequelize
+    .sync({ force: true }) //Supprime la table associé à chaque model pour toujours repartir à neuf
+    .then(() => {
       //On crée un pokémon par boucle de mapping (12 au total)
-      .then(() => {
-        pokemons.map((pokemon) => {
-          const { name, hp, cp, picture, types } = pokemon;
-          Pokemon.create({
-            name,
-            hp,
-            cp,
-            picture,
-            types,
-          });
-          // .then( ( pokemon ) => console.log( pokemon.toJSON() ) );
+      pokemons.map((pokemon) => {
+        const { name, hp, cp, picture, types } = pokemon;
+        Pokemon.create({
+          name,
+          hp,
+          cp,
+          picture,
+          types,
         });
+        // .then( ( pokemon ) => console.log( pokemon.toJSON() ) );
+      });
 
-        //On appel la méthode hash
-        bcrypt.hash("armand", 10).then((hash) => {
-          //<- 10 est le temps d'encryptage.plus il est long plus le MDP est crypté et prendra du temp pour être décrypté
-          //On crée un user
-          User.create({
-            username: "armand",
-            password: hash, //<- On pousse en BDD le hash du password
-          });
-          // .then( ( user ) => console.log( user.toJSON() ) );
+      //On appel la méthode hash pour encrypté
+      bcrypt.hash("armand", 10).then((hash) => {
+        //<- 10 est le temps d'encryptage.plus il est long plus le MDP est crypté et prendra du temp pour être décrypté
+        //On crée un user
+        User.create({
+          username: "armand",
+          password: hash, //<- On pousse en BDD le hash du password
         });
+        // .then( ( user ) => console.log( user.toJSON() ) );
+      });
 
-        console.log("La base de donnée a bien été initialisée !");
-      })
-  );
+      console.log("La base de donnée a bien été initialisée !");
+    });
 };
 
 module.exports = {
