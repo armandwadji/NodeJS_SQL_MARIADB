@@ -135,11 +135,12 @@ app.delete("/api/pokemons/:id", async (req, res) => {
 
 /******LES OPERATEURS SEQUELIZE******/
 /*
-    - Op.eq <- fait une recherche en dur dans la base de donnée identique à where {{name: name}} = {
-                                                                                                    name : {
-                                                                                                      [Op.eq] : name
-                                                                                                      }
-                                                                                                    }
+    - Op.eq <- fait une recherche en dur dans 
+    la base de donnée identique à where {{name: name}} = {
+                                                          name : {
+                                                            [Op.eq] : name
+                                                            }
+                                                          }
     - Op.like <- Vérifie si le terme de recherche est contenue dans le nom du pokémon . Attention au %
         * ${name}% : recherche une pokémon qui commence par le terme de recherche
         * %${name} : recherche une pokémon qui se termine par le terme de recherche
@@ -165,3 +166,13 @@ app.delete("/api/pokemons/:id", async (req, res) => {
   authorization : Bearer jdE98zDdefze82XZDZZD
                                                                                                     
  */
+
+/*
+      LES OPTIONS DE LA METHODE SYNC:
+      - sync() <- crée une table initiale si il y'en à pas, cependant supprime pas la table table existante en case de redémarage ou bien modification de la table (Utilisé en production).
+
+      - sync({force: true}) <- crée un table, en supprimant celle qui est existante si elle existe bien sur. Exemple une modification, un redemarrage etc... (Utilsisé en dévéloppement).
+
+      - sync({alter:true}) <- vérifie l'état de la table dans la BDD(colonnes, types de données, etc..), puis effectue des modifications nécéssaires de la table pour qu'elle corresponde au model.
+                                                                                                    
+  */
