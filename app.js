@@ -16,7 +16,7 @@ app
 sequelize.initDb();
 
 //Point de terminaison pour accédé à HEROKU
-app.get("/blooming-castle-71869", (req, res) => {
+app.get("/blooming-castle-71869.herokuapp.com", (req, res) => {
   res.json("Hello, Heroku ! ");
 });
 
