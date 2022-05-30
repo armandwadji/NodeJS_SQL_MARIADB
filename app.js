@@ -1,21 +1,24 @@
 const express = require("express"); //on récupère le paquet express dans notre code.
-const morgan = require("morgan"); //Sert à afficher les info de la requete
 const favicon = require("serve-favicon"); //sert à affiché l'icone sur le navigateur
 const bodyParser = require("body-parser"); //transforme une chaîne de caractère en format JSON.
 const sequelize = require("./src/db/sequelize"); //on importe sequelize pour lancer la méthode initDb()
 const res = require("express/lib/response");
 
 const app = express(); //On créer une instance d'une application express.
-const port = 3000;
+const port = process.env.PORT || 3000; //port prend la valeur 1 en production et 2 en dévéloppement
 
 //Création d'un middleware permettant de logger l'url appelé par l'utilisateur, le favicon et la convertion des donées en JSON.
 app
   .use(favicon(__dirname + "/favicon.ico")) //Pour insérer l'icone dans le navigateur
-  .use(morgan("dev")) //Pour affiché le méssage dans le terminal lors de la requête
   .use(bodyParser.json()); //pour convertir les fichier en JSON
 
 //On initialise le sequelize
 sequelize.initDb();
+
+//Point de terminaison pour accédé à HEROKU
+app.get("/", (req, res) => {
+  res.json("Hello, Heroku ! ");
+});
 
 /**ICI, NOUS PLACERONS NOS FUTURS POINT DE TERMINAISONS.*****/
 
