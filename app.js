@@ -36,7 +36,7 @@ require("./src/routes/updatePokemon")(app);
 /****Méthode DELETE (Update) ****/
 require("./src/routes/deletePokemon")(app);
 
-/****Méthode POST pour le Login ****/
+/****Méthode POST pour le Login: terminaison de connexion****/
 require("./src/routes/login")(app);
 
 /*********************************************************/

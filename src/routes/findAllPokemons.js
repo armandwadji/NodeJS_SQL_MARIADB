@@ -4,7 +4,6 @@ const auth = require("../auth/auth"); //On importe le middleware d'authentificat
 
 module.exports = (app) => {
   app.get("/api/pokemons", auth, (req, res) => {
-    //On teste si on à le paramètre de recherche limit
     // let limit;
     // if (req.query.limit) {
     //   limit = parseInt(req.query.limit);
@@ -15,6 +14,8 @@ module.exports = (app) => {
     //On teste si on à le paramètre de recherche name
     if (req.query.name) {
       const name = req.query.name; //<- extraction du paramètre de requête
+
+      //On teste si on à le paramètre de recherche limit
       const limit = parseInt(req.query.limit) || 5; //<- On dynamise le nombre d'élément à retourné
 
       //On limite l'envoie de la requête à au moins 2 caractères

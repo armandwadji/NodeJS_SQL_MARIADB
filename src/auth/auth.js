@@ -24,9 +24,12 @@ module.exports = (req, res, next) => {
     }
 
     //On vérifie que le token correspond bien au bon utilisateur (même id)
-    const userId = decodedToken.userId;
-    if (req.body.userId && req.body.userId !== userId) {
-      const message = `L'identifiant de l'utilisateur est invalide.`;
+    const userTokenId = decodedToken.userId;
+    console.log(
+      `Id fournis par le client :  ${req.body.userId} - Id du token : ${userTokenId}`
+    ); //<- permet d'aller cherché l'id du client fournis lors de la requete
+    if (req.body.userId && req.body.userId !== userTokenId) {
+      const message = `Le token fournis ne correspond pas à celui de cette identifiant.`;
       res.status(401).json({ message });
     } else {
       next(); //Next permet de laissé l'accès a la suite de la requête

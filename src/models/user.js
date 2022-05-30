@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       unique: {
-        //<- On vérifie l'unicité de l'identifiant de l'utilisateur
+        //On vérifie l'unicité de l'identifiant de l'utilisateur
         msg: "Le nom est déja pris.",
       },
     },
