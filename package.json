@@ -4,7 +4,7 @@
   "description": "An awesome API Rest to handle some pokemons",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "NODE_ENV=production node app.js",
     "dev": "nodemon app.js"
   },
   "author": "Armand WADJI",
