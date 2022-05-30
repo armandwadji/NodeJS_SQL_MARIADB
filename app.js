@@ -2,7 +2,6 @@ const express = require("express"); //on récupère le paquet express dans notre
 const favicon = require("serve-favicon"); //sert à affiché l'icone sur le navigateur
 const bodyParser = require("body-parser"); //transforme une chaîne de caractère en format JSON.
 const sequelize = require("./src/db/sequelize"); //on importe sequelize pour lancer la méthode initDb()
-const res = require("express/lib/response");
 
 const app = express(); //On créer une instance d'une application express.
 const port = process.env.PORT || 3000; //port prend la valeur 1 en production et 2 en dévéloppement
@@ -16,7 +15,7 @@ app
 sequelize.initDb();
 
 //Point de terminaison pour accédé à HEROKU
-app.get("/blooming-castle-71869.herokuapp.com", (req, res) => {
+app.get("/", (req, res) => {
   res.json("Hello, Heroku ! ");
 });
 
