@@ -176,3 +176,13 @@ app.delete("/api/pokemons/:id", async (req, res) => {
       - sync({alter:true}) <- vérifie l'état de la table dans la BDD(colonnes, types de données, etc..), puis effectue des modifications nécéssaires de la table pour qu'elle corresponde au model.
                                                                                                     
   */
+
+/*
+    LES POLITIQUES DE SECURITES
+    - SAME ORIGIN : Une page web hébergé sur un serveur ne peut intéragir qu'avec les ressources herberger sur le même serveur. (API REST - IMG - POLICES DE TEXTES - BDD).
+
+    - CROSS ORIGIN (CORS) : Cross Origin Ressources Sharing elle nous permet d'effectuer des requêtes en dehors de l'origine de départ.
+                  * QUI : peut accédé (GET, POST )
+                  * Comment : requêtes autorisé (PATCH, DELETE, UPDATE, PUT)
+
+*/

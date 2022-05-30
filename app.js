@@ -2,6 +2,7 @@ const express = require("express"); //on récupère le paquet express dans notre
 const favicon = require("serve-favicon"); //sert à affiché l'icone sur le navigateur
 const bodyParser = require("body-parser"); //transforme une chaîne de caractère en format JSON.
 const sequelize = require("./src/db/sequelize"); //on importe sequelize pour lancer la méthode initDb()
+const cors = require("cors"); //On importe la dépendace cors
 
 const app = express(); //On créer une instance d'une application express.
 const port = process.env.PORT || 3000; //port prend la valeur 1 en production et 2 en dévéloppement
@@ -9,7 +10,8 @@ const port = process.env.PORT || 3000; //port prend la valeur 1 en production et
 //Création d'un middleware permettant de logger l'url appelé par l'utilisateur, le favicon et la convertion des donées en JSON.
 app
   .use(favicon(__dirname + "/favicon.ico")) //Pour insérer l'icone dans le navigateur
-  .use(bodyParser.json()); //pour convertir les fichier en JSON
+  .use(bodyParser.json()) //pour convertir les fichier en JSON
+  .use(cors()); //On implémente la méthode cors
 
 //On initialise le sequelize
 sequelize.initDb();
