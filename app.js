@@ -16,6 +16,7 @@ sequelize.initDb();
 
 //Point de terminaison pour accédé à HEROKU
 app.get("/", (req, res) => {
+  console.log(req);
   res.json("Hello, Heroku ! ");
 });
 
