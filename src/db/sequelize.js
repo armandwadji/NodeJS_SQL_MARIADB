@@ -14,8 +14,8 @@ let sequelize;
 if (process.env.NODE_ENV === "production") {
   /* ETAPE 2: On crée une instance de Sequelize pour se connecter a la base de donnée et avoir accès à ses méthodes***/
   sequelize = new Sequelize(
-    "sw184btgd4mgr8q8", // <- Nom de la base de donnée
-    "inic7xjhv4ngj4ep", // <- identifiant permetant d'accéder à la base de donnée : par défaut c'est root
+    "sw184btgd4mgr8q8", // <- Nom de la base de donnée (Database)
+    "inic7xjhv4ngj4ep", // <- identifiant permetant d'accéder à la base de donnée : par défaut c'est (username)
     "j3iytc1ibezgl2bj", // <- mots de passe de la base de donnée : par défaut c'est une chaîne vide
     {
       host: "cxmgkzhk95kfgbq4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com", // <- indique ou se trouve la base de donnée sur notre machine
