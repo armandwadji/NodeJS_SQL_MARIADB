@@ -19,7 +19,7 @@ Liens de l'API : [PokemonsAPI](https://blooming-castle-71869.herokuapp.com/api/p
 - [XAMPP][XAMPP]
 
 ## Installation
-Après avoir installé les configurations du projet, vous pouvez executer cette commande pour installer le projet en local su votre machine :
+Après avoir installé les configurations du projet, vous pouvez executer cette commande pour installer le projet en local sur votre machine :
 
 ```
 git clone https://github.com/armandwadji/NodeJS_SQL_MARIADB.git
