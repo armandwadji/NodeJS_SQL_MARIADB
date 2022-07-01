@@ -2,7 +2,7 @@
   <h1 align="center" position="relative">
     <a  href="https://github.com/armandwadji/NodeJS_SQL_MARIADB.git">API Pokemons 
     </a>  
-   <img width="50px" heigth="10px" src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png" />
+   <img width="50px" heigth="10px" align="center" src = "https://assets.pokemon.com/assets/cms2/img/pokedex/detail/025.png" />
   </h1> 
 </div> 
 
